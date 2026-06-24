@@ -1,6 +1,7 @@
 # 🦕 Case-O-Saurus
 
 **Case-O-Saurus** is an enterprise‑grade, modular **Case Management Module** designed for transversal government e‑services.  
+
 It follows **Clean Architecture**, **Custom CQRS**, and **Docker‑first** principles, delivering a secure, auditable, and scalable solution for managing service requests from creation through to closure.
 
 ---
