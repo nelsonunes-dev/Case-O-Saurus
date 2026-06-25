@@ -1,0 +1,6 @@
+@CaseOSaurus.API_HostAddress = http://localhost:5291
+
+GET {{CaseOSaurus.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

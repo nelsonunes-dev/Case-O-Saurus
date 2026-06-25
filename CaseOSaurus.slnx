@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CaseOSaurus.API/CaseOSaurus.API.csproj" />
+    <Project Path="src/CaseOSaurus.Application/CaseOSaurus.Application.csproj" />
+    <Project Path="src/CaseOSaurus.Domain/CaseOSaurus.Domain.csproj" />
+    <Project Path="src/CaseOSaurus.Infrastructure/CaseOSaurus.Infrastructure.csproj" />
+    <Project Path="src/CaseOSaurus.Web/CaseOSaurus.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CaseOSaurus.IntegrationTests/CaseOSaurus.IntegrationTests.csproj" />
+    <Project Path="tests/CaseOSaurus.UnitTests/CaseOSaurus.UnitTests.csproj" />
+  </Folder>
+</Solution>
