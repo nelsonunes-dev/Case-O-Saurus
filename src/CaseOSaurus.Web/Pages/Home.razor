@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Authorization
+
+@page "/"
+@attribute [AllowAnonymous]
+
+<PageTitle>Redirecting...</PageTitle>
+<h3>Redirecting to cases...</h3>
+
+@code {
+    [Inject] protected NavigationManager Navigation { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        Navigation.NavigateTo("/cases");
+    }
+}

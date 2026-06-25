@@ -30,7 +30,6 @@ public class CaseConfiguration : IEntityTypeConfiguration<UserCase>
         builder.Property(c => c.AssignedTo)
             .HasMaxLength(100);
 
-        // RowVersion is a byte[] – we'll keep it; suppress warning if needed
         builder.Property(c => c.RowVersion)
             .IsRowVersion()
             .IsConcurrencyToken();

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using CaseOSaurus.Application.CQRS;
 using CaseOSaurus.Application.CQRS.Interfaces;

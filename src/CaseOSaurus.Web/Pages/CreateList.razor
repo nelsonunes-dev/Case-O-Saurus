@@ -1,0 +1,124 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using System.Net.Http.Json
+
+@page "/cases"
+@attribute [Authorize]
+
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<h3>Cases</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Assigned To</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in cases)
+        {
+            <tr>
+                <td>@c.Id.ToString()[..8]</td>
+                <td>@c.Title</td>
+                <td>@c.Status</td>
+                <td>@(string.IsNullOrEmpty(c.AssignedTo) ? "Unassigned" : c.AssignedTo)</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" @onclick="() => AssignCase(c.Id)">Assign</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (showAssignModal)
+{
+    <div class="modal show" style="display:block">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Assign Case</h5>
+                    <button type="button" class="btn-close" @onclick="CloseModal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="assigneeInput" class="form-label">User ID</label>
+                        <input id="assigneeInput" class="form-control" @bind="assigneeUserId" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
+                    <button class="btn btn-primary" @onclick="SubmitAssign">Assign</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop show"></div>
+}
+
+@code {
+    private List<CaseSummary> cases = new();
+    private bool showAssignModal = false;
+    private string assigneeUserId = string.Empty;
+    private Guid selectedCaseId = Guid.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCases();
+    }
+
+    private async Task LoadCases()
+    {
+        var response = await Http.GetFromJsonAsync<List<CaseSummary>>("/api/cases");
+        if (response != null)
+            cases = response;
+    }
+
+    private void AssignCase(Guid id)
+    {
+        selectedCaseId = id;
+        showAssignModal = true;
+    }
+
+    private void CloseModal()
+    {
+        showAssignModal = false;
+        assigneeUserId = string.Empty;
+    }
+
+    private async Task SubmitAssign()
+    {
+        if (string.IsNullOrWhiteSpace(assigneeUserId))
+            return;
+
+        try
+        {
+            var response = await Http.PatchAsJsonAsync($"/api/cases/{selectedCaseId}/assign", new { assignedTo = assigneeUserId });
+            if (response.IsSuccessStatusCode)
+            {
+                await LoadCases();
+                CloseModal();
+            }
+            else
+            {
+                // handle error
+            }
+        }
+        catch
+        {
+            // handle
+        }
+    }
+
+    public class CaseSummary
+    {
+        public Guid Id { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public string? AssignedTo { get; set; }
+    }
+}

@@ -1,6 +1,4 @@
-﻿using CaseOSaurus.API;
-using CaseOSaurus.API.Endpoints.Cases;
-using CaseOSaurus.Application.Commands.CreateCase;
+﻿using CaseOSaurus.API.Endpoints.Cases;
 using CaseOSaurus.Domain.Enums;
 using CaseOSaurus.Infrastructure.Persistence;
 using FastEndpoints;
@@ -12,7 +10,6 @@ using Microsoft.AspNetCore.Hosting;
 using System.Net;
 using System.Net.Http.Json;
 using Testcontainers.MsSql;
-using Xunit;
 
 namespace CaseOSaurus.IntegrationTests.Endpoints;
 

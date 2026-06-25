@@ -1,0 +1,70 @@
+﻿@inherits LayoutComponentBase
+@using System.Security.Claims
+@using System.Security.Principal
+@using Microsoft.AspNetCore.Components.Authorization
+
+@inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4 auth">
+            @if (userIdentity?.Identity?.IsAuthenticated == true)
+            {
+                <span class="me-2">Hello, @userIdentity?.Identity?.Name</span>
+                <button class="btn btn-sm btn-outline-primary" @onclick="Logout">Logout</button>
+            }
+            else
+            {
+                <a href="/login" class="btn btn-sm btn-outline-primary">Login</a>
+            }
+        </div>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private ClaimsPrincipal? userIdentity;
+
+    protected override void OnInitialized()
+    {
+        // Subscribe to authentication state changes
+        AuthProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;
+        base.OnInitialized();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Initial load
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        userIdentity = authState.User;
+    }
+
+    private async void OnAuthenticationStateChanged(Task<AuthenticationState> task)
+    {
+        var authState = await task;
+        userIdentity = authState.User;
+        StateHasChanged(); // Refresh the UI
+    }
+
+    private async Task Logout()
+    {
+        var provider = AuthProvider as UserAuthentication;
+        if (provider is not null)
+        {
+            provider.MarkUserAsLoggedOut();
+            Navigation.NavigateTo("/login");
+        }
+    }
+
+    public void Dispose()
+    {
+        AuthProvider.AuthenticationStateChanged -= OnAuthenticationStateChanged;
+    }
+}

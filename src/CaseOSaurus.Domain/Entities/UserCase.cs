@@ -42,14 +42,15 @@ public class UserCase
 
     public void UpdateStatus(CaseStatus newStatus)
     {
-        // Simple state machine: can only go forward, but we allow any transition for now.
-        // In real project, you'd enforce rules.
         Status = newStatus;
         UpdatedAt = DateTime.UtcNow;
     }
 
     public void AssignTo(string userId)
     {
+        if (string.IsNullOrWhiteSpace(userId))
+            throw new ArgumentException("User ID cannot be empty", nameof(userId));
+        
         AssignedTo = userId;
         UpdatedAt = DateTime.UtcNow;
     }

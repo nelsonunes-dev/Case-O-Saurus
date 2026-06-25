@@ -23,6 +23,7 @@ builder.Services.AddInfrastructure(builder.Configuration, skipDb);
 
 // FastEndpoints
 builder.Services.AddFastEndpoints();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocument();
 
 var app = builder.Build();

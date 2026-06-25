@@ -3,7 +3,6 @@ using FluentValidation.Results;
 using CaseOSaurus.Application.CQRS.Interfaces;
 using CaseOSaurus.Application.CQRS.PipelineBehaviors;
 using Moq;
-using Xunit;
 using FluentAssertions;
 
 namespace CaseOSaurus.UnitTests.CQRS;
