@@ -54,4 +54,24 @@ public class UserCase
         AssignedTo = userId;
         UpdatedAt = DateTime.UtcNow;
     }
+
+    public void ChangeStatus(CaseStatus newStatus)
+    {
+        if (newStatus == Status)
+            return;
+
+        var isValidTransition = (Status, newStatus) switch
+        {
+            (CaseStatus.Open, CaseStatus.InProgress) => true,
+            (CaseStatus.Open, CaseStatus.Closed) => true,
+            (CaseStatus.InProgress, CaseStatus.Closed) => true,
+            _ => false
+        };
+
+        if (!isValidTransition)
+            throw new InvalidOperationException($"Cannot transition from {Status} to {newStatus}.");
+
+        Status = newStatus;
+        UpdatedAt = DateTime.UtcNow;
+    }
 }

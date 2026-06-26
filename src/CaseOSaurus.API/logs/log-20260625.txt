@@ -43,3 +43,59 @@ System.InvalidOperationException: API Explorer not registered in DI.
 2026-06-25 10:50:43.934 +02:00 [INF] Hosting environment: Development
 2026-06-25 10:50:43.936 +02:00 [INF] Content root path: C:\Users\ms\Documents\GitHub\nelsonunes-dev\Case-O-Saurus\src\CaseOSaurus.API
 2026-06-25 10:57:15.426 +02:00 [INF] Application is shutting down...
+2026-06-25 18:32:47.996 +02:00 [INF] Registered 4 endpoints in 4 614 milliseconds.
+2026-06-25 18:32:49.026 +02:00 [INF] Now listening on: http://localhost:5291
+2026-06-25 18:32:49.030 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-25 18:32:49.031 +02:00 [INF] Hosting environment: Development
+2026-06-25 18:32:49.033 +02:00 [INF] Content root path: C:\Users\ms\Documents\GitHub\nelsonunes-dev\Case-O-Saurus\src\CaseOSaurus.Api
+2026-06-25 18:53:55.150 +02:00 [INF] Application is shutting down...
+2026-06-25 18:55:18.585 +02:00 [INF] Registered 4 endpoints in 3 587 milliseconds.
+2026-06-25 18:55:18.783 +02:00 [INF] Now listening on: http://localhost:5291
+2026-06-25 18:55:18.787 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-25 18:55:18.789 +02:00 [INF] Hosting environment: Development
+2026-06-25 18:55:18.789 +02:00 [INF] Content root path: C:\Users\ms\Documents\GitHub\nelsonunes-dev\Case-O-Saurus\src\CaseOSaurus.Api
+2026-06-25 19:02:01.115 +02:00 [INF] Application is shutting down...
+2026-06-25 19:08:18.993 +02:00 [INF] Registered 4 endpoints in 2 875 milliseconds.
+2026-06-25 19:08:19.167 +02:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider' while attempting to activate 'Microsoft.AspNetCore.Authentication.AuthenticationMiddleware'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2026-06-25 19:08:19.181 +02:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider' while attempting to activate 'Microsoft.AspNetCore.Authentication.AuthenticationMiddleware'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-06-25 19:30:52.306 +02:00 [INF] Registered 4 endpoints in 5 558 milliseconds.
+2026-06-25 19:30:53.354 +02:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider' while attempting to activate 'Microsoft.AspNetCore.Authentication.AuthenticationMiddleware'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2026-06-25 19:30:53.368 +02:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider' while attempting to activate 'Microsoft.AspNetCore.Authentication.AuthenticationMiddleware'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-06-25 19:34:49.499 +02:00 [INF] Registered 4 endpoints in 2 763 milliseconds.
+2026-06-25 19:34:49.792 +02:00 [INF] Now listening on: http://localhost:5291
+2026-06-25 19:34:49.799 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-25 19:34:49.804 +02:00 [INF] Hosting environment: Development
+2026-06-25 19:34:49.806 +02:00 [INF] Content root path: C:\Users\ms\Documents\GitHub\nelsonunes-dev\Case-O-Saurus\src\CaseOSaurus.Api
+2026-06-25 19:37:34.893 +02:00 [INF] Application is shutting down...

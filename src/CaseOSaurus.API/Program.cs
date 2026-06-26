@@ -9,7 +9,7 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // Serilog
-builder.Host.UseSerilog(static (context, cfg) =>
+builder.Host.UseSerilog((context, cfg) =>
     cfg.ReadFrom.Configuration(context.Configuration)
         .Enrich.FromLogContext()
         .WriteTo.Console()
@@ -17,33 +17,42 @@ builder.Host.UseSerilog(static (context, cfg) =>
 
 // Add services
 builder.Services.AddApplication();
-// Allow tests to skip DB provider registration by passing a flag when running IntegrationTests.
-var skipDb = builder.Environment.IsEnvironment("IntegrationTests");
-builder.Services.AddInfrastructure(builder.Configuration, skipDb);
+builder.Services.AddInfrastructure(builder.Configuration, false);
 
-// FastEndpoints
+// CORS (for Blazor)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazor", policy =>
+    {
+        policy.WithOrigins("http://localhost:5198") // your Blazor URL
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
+
+// FastEndpoints and OpenAPI
 builder.Services.AddFastEndpoints();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocument();
 
 var app = builder.Build();
 
-// Apply migrations automatically (optional) - skip when running IntegrationTests environment (tests may use InMemory provider)
-if (!app.Environment.IsEnvironment("IntegrationTests"))
+// Apply migrations automatically (optional)
+using (var scope = app.Services.CreateScope())
 {
-    using (var scope = app.Services.CreateScope())
-    {
-        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        await dbContext.Database.MigrateAsync();
-    }
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await dbContext.Database.MigrateAsync();
 }
 
-// FastEndpoints
+// CORS
+app.UseCors("AllowBlazor");
+
+// FastEndpoints pipeline
 app.UseFastEndpoints(c =>
 {
     c.Errors.ResponseBuilder = (failures, ctx, statusCode) =>
     {
-        // Return validation errors in a standard format
         return new
         {
             status = statusCode,
@@ -52,6 +61,7 @@ app.UseFastEndpoints(c =>
     };
 });
 
+// Swagger UI
 app.UseOpenApi();
 app.UseSwaggerUi(s => s.ConfigureDefaults());
 
